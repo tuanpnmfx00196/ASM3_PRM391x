@@ -1,10 +1,13 @@
 package com.tuanpnmfxx00196.videoplayer;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -22,7 +25,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class HomeActivity extends AppCompatActivity {
-    String API_KEY ="AIzaSyDiP3vYI24TRxfxI3iIrDblzd8t892XV3g";
+    public static String API_KEY ="AIzaSyDiP3vYI24TRxfxI3iIrDblzd8t892XV3g";
     String ID_PPLAYLIST ="PLabC8q982sgHCKaqN7IPlDyaEt03bM69S";
     String urlGetJson = "https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId="+ID_PPLAYLIST+
             "&key="+API_KEY+"&maxResults=10";
@@ -43,6 +46,14 @@ public class HomeActivity extends AppCompatActivity {
         arrayList = new ArrayList<>();
         adapter = new VideoAdapter(HomeActivity.this, R.layout.row_video,arrayList);
         listViewVideo.setAdapter(adapter);
+        listViewVideo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(HomeActivity.this,PlayVideo.class);
+                intent.putExtra("IdVideo",arrayList.get(position).getIdVideo());
+                startActivity(intent);
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
