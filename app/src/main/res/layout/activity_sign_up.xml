@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#00BCD4"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:weightSum="5"
+        android:background="#fff"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="200dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:gravity="center|center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:weightSum="2"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <LinearLayout
+                android:layout_weight="0.7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <EditText
+                    android:id="@+id/userNamReg"
+                    android:hint="UserName"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.7"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <EditText
+                    android:id="@+id/passwordReg"
+                    android:inputType="textPassword"
+                    android:hint="Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="0.6"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+                <EditText
+                    android:id="@+id/passwordCon"
+                    android:inputType="textPassword"
+                    android:hint="Confirm Password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_weight="0.8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <Button
+                android:id="@+id/btnSignUp"
+                android:textColor="#0015D4"
+                android:background="@drawable/button_shape"
+                android:text="SIGN UP"
+                android:layout_marginLeft="100dp"
+                android:layout_marginRight="100dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </LinearLayout>
+    <ImageView
+        android:layout_marginLeft="140dp"
+        android:layout_marginTop="80dp"
+        android:layout_width="125dp"
+        android:layout_height="121dp"
+        android:src="@drawable/logo"/>
+</RelativeLayout>
