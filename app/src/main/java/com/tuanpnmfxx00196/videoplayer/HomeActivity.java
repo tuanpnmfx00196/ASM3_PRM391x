@@ -1,5 +1,6 @@
 package com.tuanpnmfxx00196.videoplayer;
 
+import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,44 +28,10 @@ public class HomeActivity extends AppCompatActivity {
             "&key="+API_KEY+"&maxResults=10";
     String TITLE_ACTIONBAR = "Welcome to Funix";
     ListView listViewVideo;
-    ArrayList<HomeActivity>arrayList;
+    ArrayList<VideoYoutube>arrayList;
     VideoAdapter adapter;
 
-    private String TitleVideo;
-    private String Thumbnail;
-    private String IdVideo;
-
-    public HomeActivity(String titleVideo, String thumbnail, String idVideo) {
-        TitleVideo = titleVideo;
-        Thumbnail = thumbnail;
-        IdVideo = idVideo;
-    }
-
-    public String getTitleVideo() {
-        return TitleVideo;
-    }
-
-    public void setTitleVideo(String titleVideo) {
-        TitleVideo = titleVideo;
-    }
-
-    public String getThumbnail() {
-        return Thumbnail;
-    }
-
-    public void setThumbnail(String thumbnail) {
-        Thumbnail = thumbnail;
-    }
-
-    public String getIdVideo() {
-        return IdVideo;
-    }
-
-    public void setIdVideo(String idVideo) {
-        IdVideo = idVideo;
-    }
-
-    @Override
+       @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
@@ -74,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
         GetJsonYoutube(urlGetJson);
         listViewVideo = (ListView)findViewById(R.id.listViewVideo);
         arrayList = new ArrayList<>();
-        adapter = new VideoAdapter(this, R.layout.row_video,arrayList);
+        adapter = new VideoAdapter(HomeActivity.this, R.layout.row_video,arrayList);
         listViewVideo.setAdapter(adapter);
     }
     @Override
@@ -93,7 +60,6 @@ public class HomeActivity extends AppCompatActivity {
                     String url="";
                     String idVideo="";
                     JSONArray jsonItems = response.getJSONArray("items");
-                    Toast.makeText(HomeActivity.this, jsonItems.length()+"",Toast.LENGTH_SHORT).show();
                     for(int i=0; i<jsonItems.length();i++){
                         JSONObject jsonItem = jsonItems.getJSONObject(i);
                         JSONObject jsonSnippet = jsonItem.getJSONObject("snippet");
@@ -104,13 +70,12 @@ public class HomeActivity extends AppCompatActivity {
                         JSONObject jsonResourceId = jsonSnippet.getJSONObject("resourceId");
                         idVideo = jsonResourceId.getString("videoId");
                         //Toast.makeText(HomeActivity.this, url,Toast.LENGTH_SHORT).show();
-                        arrayList.add(new HomeActivity(title,url,idVideo));
+                        arrayList.add(new VideoYoutube(title,url,idVideo));
                     }
                     adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         },
                 new Response.ErrorListener() {

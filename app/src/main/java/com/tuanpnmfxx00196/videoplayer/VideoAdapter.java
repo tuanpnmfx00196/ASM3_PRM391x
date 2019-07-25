@@ -10,22 +10,23 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class VideoAdapter extends BaseAdapter {
     private Context context;
     private int layout;
-    private List<HomeActivity>VideoList;
+    private List<VideoYoutube> VideoList;
 
-    public VideoAdapter(Context context, int layout, List<HomeActivity> videoList) {
+    public VideoAdapter(Context context, int layout, List<VideoYoutube> VideoList) {
         this.context = context;
         this.layout = layout;
-        VideoList = videoList;
+        this.VideoList= VideoList;
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return VideoList.size();
     }
 
     @Override
@@ -55,10 +56,9 @@ public class VideoAdapter extends BaseAdapter {
         else{
             holder = (ViewHolder) convertView.getTag();
         }
-        HomeActivity homeActivity = VideoList.get(position);
-        holder.txtTitle.setText(homeActivity.getTitle());
-        Picasso.get().load(homeActivity.getThumbnail()).into(holder.imgThumbnail);
-
+        VideoYoutube videoYoutube = VideoList.get(position);
+        holder.txtTitle.setText(videoYoutube.getTitleVideo());
+        Picasso.get().load(videoYoutube.getThumbnail()).into(holder.imgThumbnail);
         return convertView;
     }
 }
