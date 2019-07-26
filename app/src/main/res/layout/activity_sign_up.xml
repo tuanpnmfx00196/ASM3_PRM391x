@@ -10,7 +10,7 @@
         android:weightSum="5"
         android:background="#fff"
         android:layout_marginTop="150dp"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="150dp"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:gravity="center|center"
@@ -19,12 +19,12 @@
         <LinearLayout
             android:layout_margin="10dp"
             android:orientation="vertical"
-            android:weightSum="2"
-            android:layout_weight="2"
+            android:weightSum="3"
+            android:layout_weight="3"
             android:layout_width="match_parent"
             android:layout_height="0dp">
             <LinearLayout
-                android:layout_weight="0.7"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
                 <EditText
@@ -34,7 +34,7 @@
                     android:layout_height="match_parent" />
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="0.7"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
                 <EditText
@@ -45,7 +45,7 @@
                     android:layout_height="match_parent"/>
             </LinearLayout>
             <LinearLayout
-                android:layout_weight="0.6"
+                android:layout_weight="1"
                 android:layout_width="match_parent"
                 android:layout_height="0dp">
                 <EditText
@@ -65,8 +65,8 @@
                 android:textColor="#0015D4"
                 android:background="@drawable/button_shape"
                 android:text="SIGN UP"
-                android:layout_marginLeft="100dp"
-                android:layout_marginRight="100dp"
+                android:layout_marginLeft="80dp"
+                android:layout_marginRight="80dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>

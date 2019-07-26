@@ -2,8 +2,6 @@
 <menu
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
-<item android:title="Row 1" />
-<item android:title="Row 2" />
-<item android:title="Row 3" />
-<item android:title="Row 4" />
+<item android:title="History" />
+<item android:title="LogOut" />
 </menu>

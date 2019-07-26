@@ -39,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         ActionBar actionBar = getSupportActionBar();
-        actionBar.setTitle(TITLE_ACTIONBAR);
+        actionBar.setTitle("Hi "+getUser()+" "+TITLE_ACTIONBAR);
         actionBar.show();
         GetJsonYoutube(urlGetJson);
         listViewVideo = (ListView)findViewById(R.id.listViewVideo);
@@ -97,5 +97,11 @@ public class HomeActivity extends AppCompatActivity {
                 }
         );
         requestQueue.add(jsonObjectRequest);
+    }
+    private String getUser(){
+           String user;
+           Intent intent = getIntent();
+           user = intent.getStringExtra("User");
+           return user;
     }
 }

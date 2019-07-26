@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     Button btnSignIn;
     UserDatabase userDatabase;
     ArrayList<User> arrayList;
+    String user="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,14 +34,17 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 SignUp();
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                user = userName.getText().toString();
                 CheckSignIn();
                 userName.setText("");
                 password.setText("");
+                overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
             }
         });
     }
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
     }
     public void SignIn(){
         Intent intent = new Intent(MainActivity.this, HomeActivity.class);
+        intent.putExtra("User",user);
         startActivity(intent);
     }
     public void DataUser(){
@@ -87,7 +92,6 @@ public class MainActivity extends AppCompatActivity {
         }
         if (countUser){
             if(password.getText().toString().equals(arrayList.get(position).password)){
-                Toast.makeText(this, "Login succesful",Toast.LENGTH_SHORT).show();
                 SignIn();
                             }
             else{

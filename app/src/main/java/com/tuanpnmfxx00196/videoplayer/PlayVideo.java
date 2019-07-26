@@ -3,6 +3,7 @@ package com.tuanpnmfxx00196.videoplayer;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -23,6 +24,12 @@ public class PlayVideo extends YouTubeBaseActivity implements YouTubePlayer.OnIn
         id = intent.getStringExtra("IdVideo");
         youTubePlayerView = (YouTubePlayerView)findViewById(R.id.mYoutube);
         youTubePlayerView.initialize(HomeActivity.API_KEY,this);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu,menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     @Override
