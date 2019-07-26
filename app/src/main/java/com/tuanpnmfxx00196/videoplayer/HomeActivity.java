@@ -33,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
     ListView listViewVideo;
     ArrayList<VideoYoutube>arrayList;
     VideoAdapter adapter;
-
+    HistoryDB historyDB;
        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +51,8 @@ public class HomeActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(HomeActivity.this,PlayVideo.class);
                 intent.putExtra("IdVideo",arrayList.get(position).getIdVideo());
+                historyDB = new HistoryDB(HomeActivity.this);
+                historyDB.insertData(getUser(),arrayList.get(position).getIdVideo());
                 startActivity(intent);
             }
         });
