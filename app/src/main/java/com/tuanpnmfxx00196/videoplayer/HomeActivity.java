@@ -6,6 +6,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -52,7 +53,7 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this,PlayVideo.class);
                 intent.putExtra("IdVideo",arrayList.get(position).getIdVideo());
                 historyDB = new HistoryDB(HomeActivity.this);
-                historyDB.insertData(getUser(),arrayList.get(position).getIdVideo());
+                historyDB.insertData(getUser(),position);
                 startActivity(intent);
             }
         });
@@ -62,6 +63,20 @@ public class HomeActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+           switch (item.getItemId()) {
+               case R.id.history:
+                   ShowHistory();
+                   break;
+               case R.id.logOut:
+                   LogOut();
+                   break;
+           }
+           return true;
+    }
+
     private void GetJsonYoutube(String url){
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
@@ -105,5 +120,15 @@ public class HomeActivity extends AppCompatActivity {
            Intent intent = getIntent();
            user = intent.getStringExtra("User");
            return user;
+    }
+    public void ShowHistory(){
+            Intent intent = new Intent(HomeActivity.this, History.class);
+            intent.putExtra("ArrayList",arrayList);
+            startActivity(intent);
+    }
+    public void LogOut(){
+        Toast.makeText(HomeActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(HomeActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }

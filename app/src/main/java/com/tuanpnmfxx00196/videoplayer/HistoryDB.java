@@ -31,7 +31,7 @@ public class HistoryDB extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT, KEYVIDEO TEXT)");
+        db.execSQL("create table " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, USER TEXT, KEYVIDEO INTEGER)");
     }
 
     @Override
@@ -39,7 +39,7 @@ public class HistoryDB extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
-    public boolean insertData(String userName, String keyVideo) {
+    public boolean insertData(String userName, int keyVideo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, userName);
@@ -57,7 +57,7 @@ public class HistoryDB extends SQLiteOpenHelper {
         Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
         return res;
     }
-    public boolean Update(String id, String userName, String keyVideo) {
+    public boolean Update(String id, String userName, int keyVideo) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_1, id);

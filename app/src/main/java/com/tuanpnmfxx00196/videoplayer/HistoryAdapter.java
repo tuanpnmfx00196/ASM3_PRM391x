@@ -13,24 +13,25 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VideoAdapter extends BaseAdapter {
+public class HistoryAdapter extends BaseAdapter {
     private Context context;
-    private int layout;
-    private List<VideoYoutube> VideoList;
+    private int layoutHistory;
+    private List<VideoYoutube> VideoHistory;
 
-    public VideoAdapter(Context context, int layout, List<VideoYoutube> VideoList) {
+    public HistoryAdapter(Context context, int layoutHistory, List<VideoYoutube> videoHistory) {
         this.context = context;
-        this.layout = layout;
-        this.VideoList= VideoList;
+        this.layoutHistory = layoutHistory;
+        VideoHistory = videoHistory;
     }
 
     @Override
     public int getCount() {
-        return VideoList.size();
+        return VideoHistory.size();
     }
 
     @Override
     public Object getItem(int position) {
+
         return null;
     }
 
@@ -38,25 +39,25 @@ public class VideoAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
-    public static class ViewHolder{
+    private class ViewHolder{
         ImageView imgThumbnail;
         TextView txtTitle;
     }
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        VideoAdapter.ViewHolder holder;
         if(convertView==null){
-            holder = new ViewHolder();
+            holder = new VideoAdapter.ViewHolder();
             LayoutInflater inflater = ( LayoutInflater ) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(layout,null);
+            convertView = inflater.inflate(layoutHistory,null);
             holder.txtTitle = (TextView)convertView.findViewById(R.id.textViewTitle);
             holder.imgThumbnail = (ImageView)convertView.findViewById(R.id.imageViewThumbnail);
             convertView.setTag(holder);
         }
         else{
-            holder = (ViewHolder) convertView.getTag();
+            holder = (VideoAdapter.ViewHolder) convertView.getTag();
         }
-        VideoYoutube videoYoutube = VideoList.get(position);
+        VideoYoutube videoYoutube = VideoHistory.get(position);
         holder.txtTitle.setText(videoYoutube.getTitleVideo());
         Picasso.get().load(videoYoutube.getThumbnail()).into(holder.imgThumbnail);
         return convertView;
