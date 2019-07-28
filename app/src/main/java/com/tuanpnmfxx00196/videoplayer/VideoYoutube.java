@@ -2,11 +2,13 @@ package com.tuanpnmfxx00196.videoplayer;
 
 public class VideoYoutube {
     private String TitleVideo;
+    private String Description;
     private String Thumbnail;
     private String IdVideo;
 
-    public VideoYoutube(String titleVideo, String thumbnail, String idVideo) {
+    public VideoYoutube(String titleVideo, String description, String thumbnail, String idVideo) {
         TitleVideo = titleVideo;
+        Description = description;
         Thumbnail = thumbnail;
         IdVideo = idVideo;
     }
@@ -17,6 +19,14 @@ public class VideoYoutube {
 
     public void setTitleVideo(String titleVideo) {
         TitleVideo = titleVideo;
+    }
+
+    public String getDescription() {
+        return Description;
+    }
+
+    public void setDescription(String description) {
+        Description = description;
     }
 
     public String getThumbnail() {

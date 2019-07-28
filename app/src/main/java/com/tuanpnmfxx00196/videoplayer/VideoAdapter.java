@@ -40,6 +40,7 @@ public class VideoAdapter extends BaseAdapter {
     }
     public static class ViewHolder{
         ImageView imgThumbnail;
+        TextView tvDescription;
         TextView txtTitle;
     }
     @Override
@@ -50,6 +51,7 @@ public class VideoAdapter extends BaseAdapter {
             LayoutInflater inflater = ( LayoutInflater ) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             convertView = inflater.inflate(layout,null);
             holder.txtTitle = (TextView)convertView.findViewById(R.id.textViewTitle);
+            holder.tvDescription = (TextView ) convertView.findViewById(R.id.tvDescription);
             holder.imgThumbnail = (ImageView)convertView.findViewById(R.id.imageViewThumbnail);
             convertView.setTag(holder);
         }
@@ -58,6 +60,7 @@ public class VideoAdapter extends BaseAdapter {
         }
         VideoYoutube videoYoutube = VideoList.get(position);
         holder.txtTitle.setText(videoYoutube.getTitleVideo());
+        holder.tvDescription.setText(videoYoutube.getDescription());
         Picasso.get().load(videoYoutube.getThumbnail()).into(holder.imgThumbnail);
         return convertView;
     }

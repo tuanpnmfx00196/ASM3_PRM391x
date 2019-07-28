@@ -34,7 +34,8 @@ public class History extends AppCompatActivity {
             while (res.isAfterLast()==false){
                 VideoYoutube videoYoutube = new VideoYoutube(res.getString(2),
                         res.getString(3),
-                        res.getString(4)
+                        res.getString(4),
+                        res.getString(5)
                 );
                 arrayListHistory.add(videoYoutube);
                 res.moveToNext();

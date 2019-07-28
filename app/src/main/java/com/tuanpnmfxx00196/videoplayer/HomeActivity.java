@@ -35,6 +35,7 @@ public class HomeActivity extends AppCompatActivity {
     ArrayList<VideoYoutube>arrayList;
     VideoAdapter adapter;
     HistoryDB historyDB;
+    Context context;
        @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
                 intent.putExtra("IdVideo",arrayList.get(position).getIdVideo());
                 historyDB = new HistoryDB(HomeActivity.this);
                 historyDB.insertData(getUser(),arrayList.get(position).getTitleVideo(),
+                        arrayList.get(position).getDescription(),
                         arrayList.get(position).getThumbnail(),arrayList.get(position).getIdVideo());
                 startActivity(intent);
             }
@@ -86,6 +88,7 @@ public class HomeActivity extends AppCompatActivity {
             public void onResponse(JSONObject response) {
                 try {
                     String title="";
+                    String description="";
                     String url="";
                     String idVideo="";
                     JSONArray jsonItems = response.getJSONArray("items");
@@ -93,13 +96,14 @@ public class HomeActivity extends AppCompatActivity {
                         JSONObject jsonItem = jsonItems.getJSONObject(i);
                         JSONObject jsonSnippet = jsonItem.getJSONObject("snippet");
                         title = jsonSnippet.getString("title");
+                        description = jsonSnippet.getString("description");
                         JSONObject jsonThumbnail = jsonSnippet.getJSONObject("thumbnails");
                         JSONObject jsonMedium = jsonThumbnail.getJSONObject("medium");
                         url = jsonMedium.getString("url");
                         JSONObject jsonResourceId = jsonSnippet.getJSONObject("resourceId");
                         idVideo = jsonResourceId.getString("videoId");
                         //Toast.makeText(HomeActivity.this, url,Toast.LENGTH_SHORT).show();
-                        arrayList.add(new VideoYoutube(title,url,idVideo));
+                        arrayList.add(new VideoYoutube(title,description, url,idVideo));
                     }
                     adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
