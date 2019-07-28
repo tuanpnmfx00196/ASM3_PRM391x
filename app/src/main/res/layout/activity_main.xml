@@ -52,7 +52,7 @@
                     android:id="@+id/txvSignUp"
                     android:textColor="#009688"
                     android:gravity="center"
-                    android:text="Sign up, please click here"
+                    android:text="Sign up, please click here!"
                     android:layout_marginLeft="150dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />

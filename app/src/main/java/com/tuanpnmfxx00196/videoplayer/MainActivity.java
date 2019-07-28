@@ -88,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         else{
-            Toast.makeText(this, "Please input username or password",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,
+                    "Sorry, your username and password are incorrect. Please try again!",
+                    Toast.LENGTH_SHORT).show();
         }
         if (countUser){
             if(password.getText().toString().equals(arrayList.get(position).password)){
@@ -101,8 +103,5 @@ public class MainActivity extends AppCompatActivity {
         else{
             Toast.makeText(this, "Username not exist",Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void startActivities(Intent intent) {
     }
 }

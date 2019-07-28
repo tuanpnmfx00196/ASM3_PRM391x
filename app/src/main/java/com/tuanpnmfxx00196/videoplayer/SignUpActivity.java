@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class SignUpActivity extends AppCompatActivity {
     EditText userNameReg;
     EditText passwordReg;
     EditText passwordCon;
+    TextView tvSignIn;
     Button btnSignUp;
     UserDatabase userDatabase;
     Intent intent;
@@ -26,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
         userNameReg = (EditText)findViewById(R.id.userNamReg);
         passwordReg = (EditText)findViewById(R.id.passwordReg);
         passwordCon = (EditText)findViewById(R.id.passwordCon);
+        tvSignIn = (TextView ) findViewById(R.id.tvSignIn);
         btnSignUp = (Button)findViewById(R.id.btnSignUp);
         intent = getIntent();
         arrayList = (ArrayList<User>)intent.getSerializableExtra("ArrayList");
@@ -33,6 +36,12 @@ public class SignUpActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 CheckRegister();
+            }
+        });
+        tvSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SignUpClick();
             }
         });
     }
@@ -51,11 +60,15 @@ public class SignUpActivity extends AppCompatActivity {
             if (userNameReg.getText().length() != 0 && passwordReg.getText().toString().equals(passwordCon.getText().toString())) {
                 userDatabase = new UserDatabase(this);
                 userDatabase.insertData(userNameReg.getText().toString(), passwordReg.getText().toString());
-                SignUpClick();
-            } else if (userNameReg.getText().toString().length() == 0) {
-                Toast.makeText(this, "Please input username", Toast.LENGTH_SHORT).show();
+                userNameReg.setText("");
+                passwordReg.setText("");
+                passwordCon.setText("");
+            } else if (userNameReg.getText().toString().length() == 0 |
+                    passwordReg.getText().toString().length()==0 |
+                    passwordCon.getText().toString().length()==0) {
+                        Toast.makeText(this, "Please check your information!", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(this, "Check password", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, "The passwords you entered do not match", Toast.LENGTH_SHORT).show();
             }
         }
         else{
