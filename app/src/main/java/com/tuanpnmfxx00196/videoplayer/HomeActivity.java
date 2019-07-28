@@ -128,6 +128,7 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void ShowHistory(){
             Intent intent = new Intent(HomeActivity.this, History.class);
+            intent.putExtra("User",getUser());
             startActivity(intent);
     }
     public void LogOut(){

@@ -97,7 +97,7 @@ public class HistoryDB extends SQLiteOpenHelper {
         if(res.getCount()!=0){
             res.moveToFirst();
             while (res.isAfterLast()==false){
-                if (res.getString(5).equals(url)) {
+                if (res.getString(1).equals(userName) && res.getString(5).equals(url)) {
                     count++;
                 }
                 res.moveToNext();
