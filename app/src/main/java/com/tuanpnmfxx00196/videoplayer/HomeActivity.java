@@ -53,7 +53,8 @@ public class HomeActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeActivity.this,PlayVideo.class);
                 intent.putExtra("IdVideo",arrayList.get(position).getIdVideo());
                 historyDB = new HistoryDB(HomeActivity.this);
-                historyDB.insertData(getUser(),position);
+                historyDB.insertData(getUser(),arrayList.get(position).getTitleVideo(),
+                        arrayList.get(position).getThumbnail(),arrayList.get(position).getIdVideo());
                 startActivity(intent);
             }
         });
@@ -123,7 +124,6 @@ public class HomeActivity extends AppCompatActivity {
     }
     public void ShowHistory(){
             Intent intent = new Intent(HomeActivity.this, History.class);
-            intent.putExtra("ArrayList",arrayList);
             startActivity(intent);
     }
     public void LogOut(){

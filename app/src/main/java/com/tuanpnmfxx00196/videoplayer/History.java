@@ -1,44 +1,52 @@
 package com.tuanpnmfxx00196.videoplayer;
 
-import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.Toast;
-
 import java.util.ArrayList;
+
 
 public class History extends AppCompatActivity {
     HistoryDB historyDB;
-    ListView listHistory;
-    HistoryAdapter historyAdapter;
-    ArrayList<VideoYoutube> arrayList1;
-    ArrayList<Integer>arrayList2;
-
+    ArrayList<VideoYoutube>arrayListHistory;
+    ListView lvHistory;
+    VideoAdapter adapter;
+    ArrayList<VideoYoutube> arrTemp;
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
-        Intent intent = getIntent();
-        ArrayList<VideoYoutube> arrayList = (ArrayList<VideoYoutube>) intent.getSerializableExtra("ArrayList");
-        Toast.makeText(History.this,arrayList.size()+" h",Toast.LENGTH_SHORT).show();
-        listHistory = (ListView) findViewById(R.id.listHistory);
-        historyAdapter = new HistoryAdapter(History.this, R.layout.row_video, arrayList1);
-        listHistory.setAdapter(historyAdapter);
+        GetArrayListHistory();
+        lvHistory = (ListView)findViewById(R.id.listViewHistory);
+        adapter = new VideoAdapter(History.this, R.layout.row_video,arrayListHistory);
+        lvHistory.setAdapter(adapter);
     }
-    public void GetArrayList() {
+    public void GetArrayListHistory(){
         historyDB = new HistoryDB(this);
-        arrayList2 = new ArrayList<Integer>();
+        arrayListHistory = new ArrayList<VideoYoutube>();
         Cursor res = historyDB.GetAllData();
-        if (res.getCount() == 0) {
-            Toast.makeText(this, "No data", Toast.LENGTH_SHORT).show();
-        } else {
+        if(res.getCount()==0){
+            Toast.makeText(this,"No data",Toast.LENGTH_SHORT).show();
+        }else{
             res.moveToFirst();
-            while (res.isAfterLast() == false) {
-                arrayList2.add(res.getInt(2));
+            while (res.isAfterLast()==false){
+                VideoYoutube videoYoutube = new VideoYoutube(res.getString(2),
+                        res.getString(3),
+                        res.getString(4)
+                );
+                arrayListHistory.add(videoYoutube);
                 res.moveToNext();
             }
         }
+        arrTemp = new ArrayList<VideoYoutube>();
+        for(int i=0;i<arrayListHistory.size(); i++) {
+            if (!arrTemp.contains(arrayListHistory)){
+                arrTemp.add(arrayListHistory.get(i));
+            }
+        }
+        arrayListHistory.clear();
+        arrayListHistory.addAll(arrTemp);
     }
 }
