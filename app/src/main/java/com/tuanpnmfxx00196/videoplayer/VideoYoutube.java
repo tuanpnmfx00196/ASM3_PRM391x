@@ -5,8 +5,10 @@ public class VideoYoutube {
     private String Description;
     private String Thumbnail;
     private String IdVideo;
+    private String User;
 
-    public VideoYoutube(String titleVideo, String description, String thumbnail, String idVideo) {
+    public VideoYoutube(String user, String titleVideo, String description, String thumbnail, String idVideo) {
+        User = user;
         TitleVideo = titleVideo;
         Description = description;
         Thumbnail = thumbnail;
@@ -32,7 +34,6 @@ public class VideoYoutube {
     public String getThumbnail() {
         return Thumbnail;
     }
-
     public void setThumbnail(String thumbnail) {
         Thumbnail = thumbnail;
     }
@@ -45,4 +46,11 @@ public class VideoYoutube {
         IdVideo = idVideo;
     }
 
+    public String getUser() {
+        return User;
+    }
+
+    public void setUser(String user) {
+        User = user;
+    }
 }

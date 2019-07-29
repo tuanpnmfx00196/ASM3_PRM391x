@@ -103,7 +103,7 @@ public class HomeActivity extends AppCompatActivity {
                         JSONObject jsonResourceId = jsonSnippet.getJSONObject("resourceId");
                         idVideo = jsonResourceId.getString("videoId");
                         //Toast.makeText(HomeActivity.this, url,Toast.LENGTH_SHORT).show();
-                        arrayList.add(new VideoYoutube(title,description, url,idVideo));
+                        arrayList.add(new VideoYoutube(getUser(),title,description, url,idVideo));
                     }
                     adapter.notifyDataSetChanged();
                 } catch (JSONException e) {
