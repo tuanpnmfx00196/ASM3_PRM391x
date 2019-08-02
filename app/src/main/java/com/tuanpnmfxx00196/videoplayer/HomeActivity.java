@@ -56,6 +56,7 @@ public class HomeActivity extends AppCompatActivity{
             fragmentPlayList.setArguments(bundle);
            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
            fragmentTransaction.add(R.id.frameLayout,fragmentPlayList);
+           fragmentTransaction.addToBackStack("ListVideo");
            fragmentTransaction.commit();
     }
     @Override
@@ -68,7 +69,7 @@ public class HomeActivity extends AppCompatActivity{
     public boolean onOptionsItemSelected(MenuItem item) {
            switch (item.getItemId()) {
                case R.id.history:
-                   ShowHistory();
+                   ShowHistory();//Show Fragment 2 - Video history
 
                    break;
                case R.id.logOut:
@@ -91,11 +92,18 @@ public class HomeActivity extends AppCompatActivity{
             fragmentHistory.setArguments(bundle);
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.add(R.id.frameLayout,fragmentHistory);
+            fragmentTransaction.addToBackStack("ListHistory");
             fragmentTransaction.commit();
     }
     public void LogOut(){
         Toast.makeText(HomeActivity.this, "Log Out", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(HomeActivity.this, MainActivity.class);
         startActivity(intent);
+    }
+    /*========================== SET BACK FROM FRAGMENT HISTORY==========================*/
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getSupportFragmentManager().popBackStack("ListVideo",0);
     }
 }

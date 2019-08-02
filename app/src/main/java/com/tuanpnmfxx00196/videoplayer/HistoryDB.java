@@ -90,6 +90,7 @@ public class HistoryDB extends SQLiteOpenHelper {
         db.close();
         return true;
     }
+    /*=======================CHECK DATA HISTORY BEFORE INSERT TO SQLITE=========================*/
     public boolean CheckData(String userName, String titleVideo, String description,String thumbnail, String url){
         int count=0;
         SQLiteDatabase db = this.getReadableDatabase();

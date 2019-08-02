@@ -1,5 +1,6 @@
 package com.tuanpnmfxx00196.videoplayer;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -7,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,30 +36,23 @@ public class FragmentHistory extends Fragment {
         historyList = (ListView)rootView.findViewById(R.id.historyList);
         adapter = new VideoAdapter(getActivity(), R.layout.row_video,arrayListHistory);
         historyList.setAdapter(adapter);
+
         return  rootView;
     }
-
+    /*============================= CLICK ITEM LISTENER ================================*/
     @Override
     public void onStart() {
         super.onStart();
         historyList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getActivity(),"Click"+position,Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getActivity(),PlayVideo.class);
+                intent.putExtra("IdVideo",arrayListHistory.get(position).getIdVideo());
+                startActivity(intent);
             }
         });
-    }
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        FragmentPlayList fragmentPlayList = new FragmentPlayList();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(R.id.frameLayout,fragmentPlayList);
     }
-
     public void GetArrayListHistory(){
         historyDB = new HistoryDB(getContext());
         arrayListHistory1 = new ArrayList<VideoYoutube>();
@@ -77,6 +72,7 @@ public class FragmentHistory extends Fragment {
             }
         }
     }
+    /*======================== GET HISTORY VIDEo BY USER NAME =======================*/
     public void GetDataByUser(String user){
         arrayListHistory = new ArrayList<VideoYoutube>();
         for(int i=0; i<arrayListHistory1.size();i++){
